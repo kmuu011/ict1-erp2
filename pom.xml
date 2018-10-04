@@ -16,11 +16,11 @@
 
 	<packaging>war</packaging>
 
- 
+
 
 	<properties>
 
- 
+
 
 		<!-- Generic properties -->
 
@@ -32,7 +32,7 @@
 
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
- 
+
 
 		<!-- Web -->
 
@@ -42,21 +42,21 @@
 
 		<servlet.version>2.5</servlet.version>
 
- 
 
- 
+
+
 
 		<!-- Spring -->
 
 		<spring-framework.version>4.3.8.RELEASE</spring-framework.version>
 
- 
+
 
 		<!-- Hibernate / JPA -->
 
 		<hibernate.version>4.2.1.Final</hibernate.version>
 
- 
+
 
 		<!-- Logging -->
 
@@ -64,18 +64,18 @@
 
 		<slf4j.version>1.7.5</slf4j.version>
 
- 
+
 
 		<!-- Test -->
 
 		<junit.version>4.12</junit.version>
 	</properties>
 
- 
+
 
 	<dependencies>
 
- 
+
 
 		<!-- Spring MVC -->
 
@@ -89,7 +89,7 @@
 
 		</dependency>
 
- 
+
 
 		<!-- Other Web dependencies -->
 
@@ -127,7 +127,7 @@
 
 		</dependency>
 
- 
+
 
 		<!-- Spring and Transactions -->
 
@@ -141,7 +141,7 @@
 
 		</dependency>
 
- 
+
 
 		<!-- Logging with SLF4J & LogBack -->
 
@@ -181,7 +181,7 @@
 
 		</dependency>
 
-		
+
 
 		<!-- Hibernate -->
 
@@ -195,9 +195,9 @@
 
 		</dependency>
 
- 
 
- 
+
+
 
 		<!-- Test Artifacts -->
 
@@ -225,9 +225,9 @@
 
 		</dependency>
 
- 
 
-		
+
+
 
 		<!-- Database Config Start -->
 
@@ -243,7 +243,7 @@
 
 		</dependency>
 
-		
+
 
 		<!-- Hikaricp -->
 
@@ -293,9 +293,13 @@
 
 		</dependency>
 
- 
+
 
 		<!-- Database Config End -->
+
+
+
+
 
 	</dependencies>
 

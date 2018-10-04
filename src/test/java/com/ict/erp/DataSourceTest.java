@@ -1,4 +1,4 @@
-package com.ict.erp;
+/*package com.ict.erp;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -15,6 +15,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -27,6 +28,7 @@ public class DataSourceTest {
 	
 
 	@Autowired
+	@Qualifier("dataSourceProxy")
 	private DataSource ds;
 	
 	@Autowired
@@ -53,17 +55,16 @@ public class DataSourceTest {
 			fail(e.getMessage());
 		}
 	}
-	
+	@Test
 	public void ssTest() {
 		assertNotNull(ss);
 		List<LevelInfo> liList = ss.selectList("SQL.LEVELINFO.selectLevelInfo");
-		assertEquals(liList.size(), 4);
+		assertEquals(liList.size(), 6);
 	}
-	
 	
 	public void insertTest() {
 		LevelInfo li = new LevelInfo();
-		li.setLilevel(6);
+		li.setLilevel(10);
 		li.setLiname("테스트");
 		li.setLidesc("테스트데이터");
 		assertEquals(ss.insert("SQL.LEVELINFO.insertLevelInfo",li), 1);
@@ -87,3 +88,4 @@ public class DataSourceTest {
 		
 	}
 }
+*/
