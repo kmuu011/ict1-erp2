@@ -24,7 +24,7 @@ import com.ict.erp.service.LevelService;
 import com.ict.erp.vo.LevelInfo;
 
 @Controller
-public class LevelInfoController { 
+public class LevelTController { 
 	
 	@Autowired
 	private SqlSession ss;
@@ -40,44 +40,15 @@ public class LevelInfoController {
 //		return "levelinfo/list";
 //	}
 	
-	@RequestMapping(value="/levelinfo", method=RequestMethod.GET)
-	public @ResponseBody List<LevelInfo> getLevelInfoList(Model m, @ModelAttribute LevelInfo li){
-		return ls.getLevelInfoList(li);
-	}
 	
-	@RequestMapping(value="/levelinfo", method=RequestMethod.POST)
-	public String levelInfoInsert(Model m, @ModelAttribute LevelInfo li) {
-		System.out.println(li);
-		m.addAttribute("result", ls.getLevelInsert(li));
-		return "levelinfo/list";
-	}
-	
-	@RequestMapping(value="/levelinfodelete", method=RequestMethod.GET)
+	@RequestMapping(value="/levelinfodelete", method=RequestMethod.DELETE)
 	public String levelInfoDelete(Model m, @RequestParam List<Integer> linum) {
 		System.out.println(linum);
 		System.out.println("델리트 타니");
 		m.addAttribute("resultD", ls.getLevelDelete(linum));
 		
-		return "levelinfo/list";
+		return "levelinfo/url/levelinfo:list";
 	}
-	
-	@RequestMapping(value="/levelinfoview/{linum}", method=RequestMethod.GET)
-	public String levelInfoView(Model m, @PathVariable int linum) {
-		System.out.println("읭");
-		System.out.println(linum);
-		m.addAttribute("list", ls.getLevelInfo(linum));
-		return "levelinfo/view";
-	}
-	
-	@RequestMapping(value="/levelinfoupdate", method=RequestMethod.POST)
-	public String levelInfoUpdate(Model m, @ModelAttribute LevelInfo li) {
-		System.out.println("읭");
-		System.out.println(li);
-		m.addAttribute("resultU", ls.getLevelUpdate(li));
-		
-		return "levelinfo/view";
-	}
-	
 	
 	
 

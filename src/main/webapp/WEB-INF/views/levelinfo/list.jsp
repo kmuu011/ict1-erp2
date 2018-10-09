@@ -11,6 +11,7 @@ table {
 }
 </style>
 </head>
+
 <body>
 
 <c:if test="${!empty result}">
@@ -27,8 +28,6 @@ table {
 		location.href = "${rPath}/levelinfo";
 	</script>
 </c:if>
-
-<form name="view" action="${rPath}/levelinfo" method="get">
 
 <br>
 
@@ -53,11 +52,11 @@ table {
 			</tr>
 		</thead>
 
-		<tbody>
+		<tbody id="tBody">
 
 			<c:if test="${empty liList}">
 				<tr>
-					<td colspan="4">레벨 목록이 ㅇ벗슴니다</td>
+					<td colspan="5">레벨 목록이 ㅇ벗슴니다</td>
 				</tr>
 			</c:if>
 
@@ -76,20 +75,50 @@ table {
 
 	</table><br>
 
-</form>
-
 <button name="insert">등록</button>
 <button name="delete" formmethod="delete">삭제</button>
 
 <script>
+var tbody = document.querySelector("#tBody");
+var thead = document.querySelector("#tHead");
+var head = '';
+var body = '';
 
-window.onload = function(){
+
+ window.addEventListener('load', function(){
 	var xhr = new XMLHttpRequest();
 	
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == xhr.DONE){
 			if(xhr.status == 200){
-				alert(xhr.response);
+					JSON.parse(xhr.response).forEach((e) => {
+						if(!head){
+							head += '<tr><th><input type="checkbox" onclick="chkAll(this)"></th>';
+							for(var k in e){
+								head += '<th>' + k + '</th>';	
+							}
+							head +='</tr>';
+							thead.innerHTML = head;
+						}
+						
+						body += '<tr id="lv' + e.linum + '">';
+						body += '<td><input type="checkbox" name="chk" value='+ e["linum"] + '></td>';
+						for(var k in e){
+							if(k.indexOf("name") >= 0){
+								body += '<td><a href="${rPath}/levelinfoview/' + e["linum"] + '">' + e[k] + '</a></td>';
+							}else{
+								body += '<td>' + e[k] + '</td>';								
+							}
+						}
+						body += '</tr>';
+						
+					});
+					
+					tbody.innerHTML = body;
+				
+					var lis = document.querySelector("#lv42 #liname").value;
+					alert(lis);
+					
 			}
 		}
 	}
@@ -97,7 +126,9 @@ window.onload = function(){
 	xhr.open("GET", "${rPath}/levelinfo");
 	xhr.send();
 	
-}
+});
+ 
+ 
 
 
 document.querySelector("button[name=insert]").onclick = function(){

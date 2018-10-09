@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SQL.TESTINFO">
+
+	<select id="selectTIList" resultType="ti">
+		select * from test1
+		order by tid desc
+	</select>
+	
+	<select id="selectTI" resultType="ti" parameterType="Integer">
+		select * from test1 where tid = #{tid}
+	</select>
+
+	<insert id="insertTI" parameterType="ti">
+		insert into test1(tid, ttext, tdesc)
+		values(seq_test.nextval, #{ttext}, #{tdesc})
+	</insert>
+	
+	<update id="updateTI" parameterType="ti">
+		update test1
+		<set>
+			<if test="ttext!=null"> ttext = #{ttext}</if>
+			<if test="tdesc!=null"> tdesc = #{tdesc}</if>
+		</set>
+		where tid = #{tid}
+	</update>
+
+</mapper>
