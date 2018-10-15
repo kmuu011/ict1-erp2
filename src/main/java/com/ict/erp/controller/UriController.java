@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller 
 public class UriController {
 	
-	@RequestMapping(value="/url/{path}", method=RequestMethod.GET)
+	@RequestMapping(value="/uri/{path}", method=RequestMethod.GET)
 	public String goPage(@PathVariable String path) {
 		path = path.replace(":", "/");
 		return path;

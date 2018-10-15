@@ -101,7 +101,7 @@ var body = '';
 							thead.innerHTML = head;
 						}
 						
-						body += '<tr id="lv' + e.linum + '">';
+						body += '<tr>';
 						body += '<td><input type="checkbox" name="chk" value='+ e["linum"] + '></td>';
 						for(var k in e){
 							if(k.indexOf("name") >= 0){
