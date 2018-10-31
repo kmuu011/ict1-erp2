@@ -5,15 +5,14 @@
 <mapper namespace="SQL.LEVELINFO">
 	<select id="selectLevelInfo" resultType="li" parameterType="li">
 		select * from level_info
-		<where>
-			<if test="liname!=null">and liname like '%' || #{liname} || '%'</if>
-		</where>
-		order by linum
-		
 	</select>
 	
 	<select id="viewLevelInfo" resultType="li" parameterType="Integer">
 		select * from level_info where linum = #{linum}		
+	</select>
+	
+	<select id="selectLinum" resultType="int">
+	select seq_linum.nextval as linum from dual
 	</select>
 
 	<insert id="insertLevelInfo" parameterType="li">
@@ -30,9 +29,10 @@
 		</set>
 		where linum=#{linum}
 	</update>
+	
 
 	<delete id="deleteLevelInfo" parameterType="Integer">
 		delete from level_info
-		where linum=#{num}
+		where linum=#{linum}
 	</delete>
 </mapper>

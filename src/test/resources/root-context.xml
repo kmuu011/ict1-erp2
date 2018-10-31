@@ -8,6 +8,8 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<context:property-placeholder location="classpath:config/db.properties"/>
+	<context:component-scan base-package="com.ict.erp.dao" />
+	<context:component-scan base-package="com.ict.erp.service" />
 	
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="jdbcUrl" value="${db.jdbcUrl}"/>
@@ -23,7 +25,7 @@
 		<constructor-arg ref="hikariConfig"/>
 	</bean>
 	
-	<bean id="dataSourceProxy" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+	 <bean id="dataSourceProxy" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 		<constructor-arg ref="hikariDataSource"/>
 		<property name="logFormatter">
 			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
@@ -31,10 +33,10 @@
 				<property name="sqlPrefix" value="CUSTOM SQL LOG : ====>"/>
 			</bean>
 		</property>	
-	</bean>
+	</bean> 
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSourceProxy"/>
+		<property name="dataSource" ref="hikariDataSource"/>
 		<property name="configLocation" value="classpath:config/mybatis.xml"/>
 		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
 	</bean>

@@ -11,6 +11,7 @@ public class UriController {
 	@RequestMapping(value="/uri/{path}", method=RequestMethod.GET)
 	public String goPage(@PathVariable String path) {
 		path = path.replace(":", "/");
+		System.out.println(path);
 		return path;
 	}
 

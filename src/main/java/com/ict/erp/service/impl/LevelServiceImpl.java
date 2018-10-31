@@ -45,5 +45,21 @@ public class LevelServiceImpl implements LevelService{
 		
 		return ld.updateLevelInfo(li);
 	}
+	
+	@Override
+	public int getLevelUpdateN(LevelInfo li) {
+		
+		return ld.updateLevelInfoN(li);
+	}
+
+	@Override
+	public int getDeleteLevel(Integer linum) {
+		return ld.deleteLevel(linum);
+	}
+
+	@Override
+	public int getLinum() {
+		return ld.getLinum();
+	}
 
 }

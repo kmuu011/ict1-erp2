@@ -15,6 +15,10 @@ public interface LevelDAO {
 	public LevelInfo viewLevelInfo(int linum);
 	
 	public int updateLevelInfo(LevelInfo li);
+	public int updateLevelInfoN(LevelInfo li);
 	
+	public int deleteLevel(Integer linum);
+	
+	public int getLinum();
 
 }

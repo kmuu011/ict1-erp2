@@ -15,4 +15,9 @@ public interface LevelService {
 	public LevelInfo getLevelInfo(int linum);
 	
 	public int getLevelUpdate(LevelInfo li);
+	public int getLevelUpdateN(LevelInfo li);
+	
+	public int getDeleteLevel(Integer linum);
+	
+	public int getLinum();
 }

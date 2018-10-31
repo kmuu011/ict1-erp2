@@ -119,6 +119,8 @@ var body = '';
 					var lis = document.querySelector("#lv42 #liname").value;
 					alert(lis);
 					
+			}else{
+				alert(JSON.parse(xhr.response).error)
 			}
 		}
 	}

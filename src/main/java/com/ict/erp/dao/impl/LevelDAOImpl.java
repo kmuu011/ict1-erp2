@@ -30,7 +30,7 @@ public class LevelDAOImpl implements LevelDAO{
 	public int deleteLevelInfo(List<Integer> linum) {
 		int result = 0;
 		for(int num : linum) {
-			result += ss.delete("SQL.LEVELINFO.deleteLevelInfo", num);
+			result += ss.delete("SQL.LEVELINFO.deleteLevelInfo", linum);
 		}
 		return result;
 	}
@@ -45,6 +45,23 @@ public class LevelDAOImpl implements LevelDAO{
 	public int updateLevelInfo(LevelInfo li) {
 
 		return ss.update("SQL.LEVELINFO.updateLevelInfo", li);
+	}
+	
+	@Override
+	public int updateLevelInfoN(LevelInfo li) {
+		
+		return ss.update("SQL.LEVELINFO.updateLevelInfoN", li);
+	}
+
+	@Override
+	public int deleteLevel(Integer linum) {
+		return ss.delete("SQL.LEVELINFO.deleteLevelInfo", linum);
+	}
+
+	@Override
+	public int getLinum() {
+		
+		return ss.selectOne("SQL.LEVELINFO.selectLinum");
 	}
 
 }

@@ -78,6 +78,12 @@ public class LevelInfoController {
 		return "levelinfo/view";
 	}
 	
+	@RequestMapping(value="/levelinfo", method=RequestMethod.PUT)
+	public Integer levelInfoUpN(@RequestBody LevelInfo li) {
+		ls.getLevelUpdateN(null);
+		return 1;
+	}
+	
 	
 	
 

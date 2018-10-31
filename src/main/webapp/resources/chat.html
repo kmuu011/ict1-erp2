@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<fieldset>
+<legend>채팅방</legend>
+
+	<textarea id="room" rows="20" cols="40"></textarea>
+
+</fieldset>
+
+<br>
+
+<input type="text" id="chat"><br>
+
+<button onclick="send()">보내기</button>
+
+<script>
+
+var ws;
+
+function doInit(){
+	ws = new WebSocket('ws://192.168.0.33/ict1-erp2/wstest');
+	
+	ws.onopen = function(evt){
+		alert('연결 성공');
+	}
+	
+	ws.onerror = function(e){
+		alert(e);
+	}
+	
+	ws.onmessage = function(evt){
+		document.querySelector('#room').insertAdjacentHTML('beforeend', evt.data+'\n');
+	}
+}
+
+window.addEventListener('load', doInit);
+
+function send(){
+	var k = document.querySelector('#chat').value;
+	ws.send(k);
+}
+
+
+
+</script>
+
+</body>
+</html>

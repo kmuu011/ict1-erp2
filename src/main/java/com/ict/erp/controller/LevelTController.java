@@ -51,6 +51,48 @@ public class LevelTController {
 	}
 	
 	
+	@RequestMapping(value="/levelinfos", method=RequestMethod.GET)
+	@ResponseBody
+	public List<LevelInfo> selectLevelInfo(){
+		return ls.getLevelInfoList(null);
+	}
+	
+	
+	@RequestMapping(value="/levelinfos/{linum}", method=RequestMethod.GET)
+	@ResponseBody
+	public LevelInfo viewLevelInfo(@PathVariable Integer linum) {
+		return ls.getLevelInfo(linum);
+	}
+	
+	@RequestMapping(value="/levelinfos/{linum}", method=RequestMethod.DELETE)
+	@ResponseBody
+	public Integer deleteLevelInfo(@PathVariable Integer linum) {
+		System.out.println(linum);
+		//return ls.getDeleteLevel(linum);
+		return 0;
+	}
+	
+	@RequestMapping(value="/levelinfos/{linum}", method=RequestMethod.POST)
+	@ResponseBody
+	public Integer insertLevelInfo(@RequestBody LevelInfo li, @PathVariable Integer linum) {
+		System.out.println(li);
+		return ls.getLevelInsert(li);
+	}
+	
+	@RequestMapping(value="/levelinfos/{linum}", method=RequestMethod.PUT)
+	@ResponseBody
+	public Integer updateLevelInfo(@RequestBody LevelInfo li, @PathVariable Integer linum) {
+		li.setLinum(linum);
+		return ls.getLevelUpdate(li); 
+	}
+
+	
+	@RequestMapping(value="/linum", method=RequestMethod.GET)
+	@ResponseBody
+	public Integer getLinum() {
+		return ls.getLinum();
+	}
+	
 
 	
 //	@RequestMapping(value="/levelinfoMap", method=RequestMethod.GET)
