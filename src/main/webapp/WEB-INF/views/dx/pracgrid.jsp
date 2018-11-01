@@ -38,7 +38,13 @@ var mData = [{id:'delete',text:'delete'},
 				});
 				
 			}else if(mId == 'add'){
-				alert('추가하즈ㅏ')
+				dhx.ajax.get('${rPath}/linum', function(res){
+					var data = JSON.parse(res.xmlDoc.responseText);
+					var rId = dxGrid.uid();
+					dxGrid.addRow(rId,[data],dxGrid.getRowsNum());
+					dxGrid.setRowAttribute(rId,"st","new");
+				});
+				
 			}
 			
 		});
@@ -57,7 +63,47 @@ var mData = [{id:'delete',text:'delete'},
 			dxGrid.parse(data,'js');
 		});
 		
+		dxGrid.attachEvent('onEditCell', function(stage,rId,cInd,nValue,oValue){
+			if(stage == 2){
+				if(dxGrid.getRowAttribute(rId,'st') == 'new'){
+					var rData = dxGrid.getRowData(rId);
+					alert(rData.linum)
+					return true;
+				}
+				
+				if(nValue != oValue){
+					var rData = dxGrid.getRowData(rId);
+					var xhr = new XMLHttpRequest();
+					
+					xhr.onreadystatechange = function(){
+						if(xhr.readyState == xhr.DONE){
+							if(xhr.status == 200){
+								alert(1);
+							}
+						}
+					}
+					
+					xhr.open('PUT', '${rPath}/levelinfos/' + rData.linum);
+					xhr.setRequestHeader('Content-type','application/json;charset=utf-8');
+					xhr.send(JSON.stringify(makeParams(rData)));
+					
+				}
+				
+				
+				
+			}
+		});
 		
+		
+	}
+	
+	function makeParams(data){
+		var params = {};
+		for(var key in data){
+			params[key] = data[key];
+		}
+		
+		return params;
 	}
 	                        
 

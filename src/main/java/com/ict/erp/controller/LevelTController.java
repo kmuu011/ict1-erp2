@@ -83,6 +83,7 @@ public class LevelTController {
 	@ResponseBody
 	public Integer updateLevelInfo(@RequestBody LevelInfo li, @PathVariable Integer linum) {
 		li.setLinum(linum);
+		System.out.println(li);
 		return ls.getLevelUpdate(li); 
 	}
 
